@@ -60,3 +60,6 @@ htmlcov/
 
 # Temporary pattern references (symlinks to costum_patterns)
 dev-patterns-ref/
+
+# Temporary patterns to be exported to costum_patterns
+dev-patterns-new/
