@@ -57,3 +57,6 @@ htmlcov/
 *.pid
 *.seed
 *.pid.lock
+
+# Temporary pattern references (symlinks to costum_patterns)
+dev-patterns-ref/
