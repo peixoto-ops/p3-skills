@@ -45,8 +45,41 @@ echo "TEMA" | fabric -p deep_research_metaprompt -g=pt-br
 # Entrada via arquivo de contexto (com saída em Português)
 cat caso_cliente.txt | fabric -p deep_research_metaprompt -g=pt-br
 
-# Saída salva em arquivo
-cat caso_cliente.txt | fabric -p deep_research_metaprompt -g=pt-br > plano_pesquisa.md
+# Saída salva em arquivo (usando flag -o)
+cat caso_cliente.txt | fabric -p deep_research_metaprompt -g=pt-br -o plano_pesquisa.md
+```
+
+### Gerenciamento de Saída (Arquivos)
+
+Para workflows sequenciais ou assíncronos, use a flag `-o` para definir o arquivo de saída. Isso permite encadear múltiplas execuções e referenciar resultados anteriores.
+
+```bash
+# Saída em Markdown (ideal para documentação)
+echo "TEMA" | fabric -p deep_research_metaprompt -g=pt-br -o output/plano_pesquisa.md
+
+# Saída em JSON (ideal para parsing e integração)
+echo "TEMA" | fabric -p deep_research_metaprompt -g=pt-br -o output/plano_pesquisa.json
+
+# Saída em TXT (ideal para leitura direta ou input para outras ferramentas)
+echo "TEMA" | fabric -p deep_research_metaprompt -g=pt-br -o output/plano_pesquisa.txt
+```
+
+#### Escolha de Extensão
+
+| Extensão | Quando Usar | Benefício |
+|----------|-------------|-----------|
+| `.md` | Documentação, relatórios, anexos | Formatação rica, fácil de ler |
+| `.json` | Parsing, integração com scripts | Estruturado, programaticamente acessível |
+| `.txt` | Input para outras ferramentas/skills | Simples, universal |
+
+#### Workflow Sequencial
+
+```bash
+# Passo 1: Gerar plano de pesquisa
+echo "Desvio Produtivo do Consumidor" | fabric -p deep_research_metaprompt -g=pt-br -o research/01_plano.md
+
+# Passo 2: Usar o plano como contexto para próxima execução
+cat research/01_plano.md | fabric -p outro_pattern -g=pt-br -o research/02_estrategia.md
 ```
 
 ### Fluxo de Trabalho Típico
