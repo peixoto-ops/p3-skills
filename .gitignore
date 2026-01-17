@@ -57,6 +57,3 @@ htmlcov/
 *.pid
 *.seed
 *.pid.lock
-
-# Temporary patterns folder (to be moved to costum_patterns)
-dev-patterns/
